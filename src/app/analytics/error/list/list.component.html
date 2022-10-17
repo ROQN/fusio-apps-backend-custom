@@ -1,0 +1,33 @@
+
+<h1>Error</h1>
+
+<fusio-message [response]="response"></fusio-message>
+
+<fusio-search
+  [searchTerm]="search"
+  (search)="doSearch(1, $event)"
+  placeholder="error"
+  helpPath="analytics/error">
+</fusio-search>
+
+<div class="row">
+  <div class="col-md-2">
+    <fusio-sidebar
+      name="error"
+      nameKey="message"
+      [entries]="entries"
+      [totalResults]="totalResults"
+      [selected]="selected"
+      [page]="page"
+      [pageSize]="pageSize"
+      (pageChange)="doSearch($event, search)"
+      (entrySelect)="doSelect($event)">
+    </fusio-sidebar>
+  </div>
+  <div class="col-md-10">
+    <fusio-empty *ngIf="!selected" [loading]="loading"></fusio-empty>
+    <app-error-detail *ngIf="selected"
+      [selected]="selected">
+    </app-error-detail>
+  </div>
+</div>

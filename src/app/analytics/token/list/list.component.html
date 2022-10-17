@@ -1,0 +1,34 @@
+
+<h1>Token</h1>
+
+<fusio-message [response]="response"></fusio-message>
+
+<fusio-search
+  [searchTerm]="search"
+  (search)="doSearch(1, $event)"
+  (newClick)="openCreateDialog()"
+  placeholder="token"
+  helpPath="analytics/token">
+</fusio-search>
+
+<div class="row">
+  <div class="col-md-2">
+    <fusio-sidebar
+      name="token"
+      nameKey="ip"
+      [entries]="entries"
+      [totalResults]="totalResults"
+      [selected]="selected"
+      [page]="page"
+      [pageSize]="pageSize"
+      (pageChange)="doSearch($event, search)"
+      (entrySelect)="doSelect($event)">
+    </fusio-sidebar>
+  </div>
+  <div class="col-md-10">
+    <fusio-empty *ngIf="!selected" [loading]="loading"></fusio-empty>
+    <app-token-detail *ngIf="selected"
+      [selected]="selected">
+    </app-token-detail>
+  </div>
+</div>

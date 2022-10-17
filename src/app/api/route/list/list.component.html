@@ -1,0 +1,36 @@
+
+<h1>Route</h1>
+
+<fusio-message [response]="response"></fusio-message>
+
+<fusio-search
+  [searchTerm]="search"
+  (search)="doSearch(1, $event)"
+  (newClick)="openCreateDialog()"
+  placeholder="/acme/endpoint"
+  helpPath="api/routes">
+</fusio-search>
+
+<div class="row">
+  <div class="col-md-2">
+    <fusio-sidebar
+      name="route"
+      nameKey="path"
+      [entries]="entries"
+      [totalResults]="totalResults"
+      [selected]="selected"
+      [page]="page"
+      [pageSize]="pageSize"
+      (pageChange)="doSearch($event, search)"
+      (entrySelect)="doSelect($event)">
+    </fusio-sidebar>
+  </div>
+  <div class="col-md-10">
+    <fusio-empty *ngIf="!selected" [loading]="loading" (newClick)="openCreateDialog()"></fusio-empty>
+    <app-route-detail *ngIf="selected"
+      [selected]="selected"
+      (updateClick)="openUpdateDialog(selected)"
+      (deleteClick)="openDeleteDialog(selected)">
+    </app-route-detail>
+  </div>
+</div>

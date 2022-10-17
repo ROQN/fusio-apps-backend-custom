@@ -1,0 +1,37 @@
+
+<h1>Schema</h1>
+
+<fusio-message [response]="response"></fusio-message>
+
+<fusio-search
+  [searchTerm]="search"
+  [buttons]="[{routerLink: '/schema/designer', icon: 'bi-bag-plus'}]"
+  (search)="doSearch(1, $event)"
+  (newClick)="openCreateDialog()"
+  placeholder="schema"
+  helpPath="api/schema">
+</fusio-search>
+
+<div class="row">
+  <div class="col-md-2">
+    <fusio-sidebar
+      name="schema"
+      nameKey="name"
+      [entries]="entries"
+      [totalResults]="totalResults"
+      [selected]="selected"
+      [page]="page"
+      [pageSize]="pageSize"
+      (pageChange)="doSearch($event, search)"
+      (entrySelect)="doSelect($event)">
+    </fusio-sidebar>
+  </div>
+  <div class="col-md-10">
+    <fusio-empty *ngIf="!selected" [loading]="loading" (newClick)="openCreateDialog()"></fusio-empty>
+    <app-schema-detail *ngIf="selected"
+      [selected]="selected"
+      (updateClick)="openUpdateDialog(selected)"
+      (deleteClick)="openDeleteDialog(selected)">
+    </app-schema-detail>
+  </div>
+</div>
