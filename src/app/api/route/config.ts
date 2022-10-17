@@ -1,8 +1,12 @@
 import {Route_Version} from "fusio-sdk/dist/src/generated/backend/Route_Version";
-import {Route_Method} from "fusio-sdk/dist/src/generated/backend/Route_Method";
+import {Route_Method as Route_Method_Base} from "fusio-sdk/dist/src/generated/backend/Route_Method";
 import {Route_Methods} from "fusio-sdk/dist/src/generated/backend/Route_Methods";
 import {Route_Method_Responses} from "fusio-sdk/dist/src/generated/backend/Route_Method_Responses";
 import {Route as ModelRoute} from "fusio-sdk/dist/src/generated/backend/Route";
+
+interface Route_Method extends Route_Method_Base {
+  isAnalytics?: boolean;
+}
 
 export class Config {
 

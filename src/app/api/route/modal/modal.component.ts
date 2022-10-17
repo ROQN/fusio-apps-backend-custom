@@ -3,7 +3,7 @@ import {Schema} from "fusio-sdk/dist/src/generated/backend/Schema";
 import {Action} from "fusio-sdk/dist/src/generated/backend/Action";
 import {Route_Version} from "fusio-sdk/dist/src/generated/backend/Route_Version";
 import {Config, HttpResponse} from "../config";
-import {Route_Method} from "fusio-sdk/dist/src/generated/backend/Route_Method";
+import {Route_Method as Route_Method_Base} from "fusio-sdk/dist/src/generated/backend/Route_Method";
 import {Route_Methods} from "fusio-sdk/dist/src/generated/backend/Route_Methods";
 import {Route_Method_Responses} from "fusio-sdk/dist/src/generated/backend/Route_Method_Responses";
 import {Route as ModelRoute} from "fusio-sdk/dist/src/generated/backend/Route";
@@ -11,6 +11,10 @@ import {AxiosResponse} from "axios";
 import {Message} from "fusio-sdk/dist/src/generated/backend/Message";
 import {Modal} from "ngx-fusio-sdk";
 import Client from "fusio-sdk/dist/src/generated/backend/Client";
+
+interface Route_Method extends Route_Method_Base {
+  isAnalytics?: boolean;
+}
 
 @Component({
   selector: 'app-route-modal',
