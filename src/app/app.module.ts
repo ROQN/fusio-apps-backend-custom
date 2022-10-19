@@ -91,6 +91,7 @@ import {MapComponent} from './shared/map/map.component';
 import {CollectionComponent} from './shared/collection/collection.component';
 import {GeneratorComponent} from './api/generator/generator.component';
 import {FusioService} from "./fusio.service";
+import {FusioCustomService} from "./fusio-custom.service";
 import {FusioSdkModule, FusioService as Sdk} from "ngx-fusio-sdk";
 
 @NgModule({
@@ -192,7 +193,8 @@ import {FusioSdkModule, FusioService as Sdk} from "ngx-fusio-sdk";
     FusioSdkModule
   ],
   providers: [
-    {provide: Sdk, useExisting: FusioService}
+    {provide: Sdk, useExisting: FusioService},
+    {provide: Sdk, useExisting: FusioCustomService}
   ],
   bootstrap: [AppComponent]
 })
