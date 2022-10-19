@@ -5,6 +5,7 @@ import {Message} from "fusio-sdk/dist/src/generated/backend/Message";
 import {Collection_Category_Query} from "fusio-sdk/dist/src/generated/backend/Collection_Category_Query";
 import {HelpService} from "ngx-fusio-sdk";
 import {FusioService} from "../../../fusio.service";
+import {FusioCustomService} from "../../../fusio-custom.service";
 
 @Component({
   selector: 'app-list',
@@ -22,7 +23,7 @@ export class ListComponent implements OnInit {
   type: string = 'action';
   types?: Array<string>;
 
-  constructor(protected fusio: FusioService, protected help: HelpService, protected route: ActivatedRoute, protected router: Router) {
+  constructor(protected fusio: FusioService, protected fusioCustom: FusioCustomService, protected help: HelpService, protected route: ActivatedRoute, protected router: Router) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -63,6 +64,15 @@ export class ListComponent implements OnInit {
   async doRestore(entry: Trash_Data) {
     const group = await this.fusio.getClient().backendTrash();
     const response = await group.getBackendTrashByType(this.type).backendActionTrashRestore({
+      id: entry.id
+    });
+    this.response = response.data;
+    this.doSearch();
+  }
+
+  async doRemove(entry: Trash_Data) {
+    const client = await this.fusioCustom.getClient();
+    const response = await client.backendActionTrashRemove(this.type, {
       id: entry.id
     });
     this.response = response.data;

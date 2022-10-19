@@ -11,5 +11,4 @@ export class FusioService extends Sdk<Client> {
   protected newClient(baseUrl: string, credentials: CredentialsInterface | null | undefined, tokenStore: TokenStoreInterface | undefined): Client {
     return new Client(baseUrl, credentials, tokenStore);
   }
-
 }
