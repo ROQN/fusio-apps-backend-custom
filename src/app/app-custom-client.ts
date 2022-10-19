@@ -6,13 +6,13 @@ export default class AppCustomClient extends Client {
     super(baseUrl, credentials, tokenStore, scopes);
   }
 
-  public async backendActionTrashRemove(type: string, data: {id?: number, status?: string}) {
+  public async backendActionTrashRemove(type: string, data: {id?: number, status?: number}) {
     const url =  this.baseUrl + "/backend/trash/" + type + "";
     let params = {};
 
     const httpClient = await this.newHttpClient();
 
-    data['status'] = 'remove';
+    data['status'] = 0;
 
     return httpClient.post(url, data, params);
   }
