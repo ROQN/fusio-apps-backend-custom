@@ -28,8 +28,10 @@
       <tbody>
       <tr *ngFor="let row of entries">
         <td>{{row.name}}</td>
-        <td><button (click)="doRemove(row)" type="button" class="btn btn-primary float-end"><i class="bi bi-trash"></i></button></td>
-        <td><button (click)="doRestore(row)" type="button" class="btn btn-primary float-end"><i class="bi bi-arrow-clockwise"></i></button></td>
+        <td>
+          <button (click)="doRestore(row)" type="button" class="btn btn-primary float-end"><i class="bi bi-arrow-clockwise"></i></button>
+          <button (click)="doRemove(row)" type="button" class="btn btn-primary float-end"><i class="bi bi-trash"></i></button>
+        </td>
       </tr>
       </tbody>
     </table>
