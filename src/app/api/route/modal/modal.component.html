@@ -63,6 +63,14 @@
                   </div>
                 </div>
                 <div class="mb-3 row">
+                  <label for="isAnalytics" class="col-sm-2 col-form-label fw-bold">Is Analytics</label>
+                  <div class="col-sm-10">
+                    <div class="form-check form-switch">
+                      <input type="checkbox" id="isAnalytics" name="isAnalytics" [(ngModel)]="method.isAnalytics" [disabled]="mode === 3 || config.status !== 4" class="form-check-input">
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 row">
                   <label for="description" class="col-sm-2 col-form-label fw-bold">Description</label>
                   <div class="col-sm-10">
                     <div class="input-group">
