@@ -44,7 +44,7 @@ export class SwaggerModalComponent implements OnInit {
     const activeMethod = $('.modal-body form .tab-content .nav-tabs a.nav-link.active').text();
     const swaggerSettings = $(`.method-${activeMethod}-swagger-settings-js`).val();
 
-    const defaultData = this.queryStringToJSON(decodeURI(<string>swaggerSettings));
+    const defaultData = JSON.parse(<string>swaggerSettings);
 
     if (defaultData.tag) {
       $('.tag-js').val(defaultData.tag);
@@ -56,8 +56,8 @@ export class SwaggerModalComponent implements OnInit {
 
       for (const i in nameList) {
         const name = nameList[i];
-        const parameter = defaultData['parameter[]'][parseInt(i) + 1];
-        const fieldType = defaultData['fieldType[]'][parseInt(i) + 1];
+        const parameter = defaultData['parameter[]'][i];
+        const fieldType = defaultData['fieldType[]'][i];
         const description = defaultData['description[]'][i];
         const defaultValue = defaultData['defaultValue[]'][i];
 
@@ -133,10 +133,16 @@ export class SwaggerModalComponent implements OnInit {
   }
 
   saveClick() {
-    const data = $('.swagger-settings-js input, .swagger-settings-js select').serialize();
+    const swaggerData = $('.swagger-settings-js');
+    swaggerData.find('.row-js:first').remove();
+
+    const data = swaggerData.find('input, select').serialize();
+
+    const preparedData = JSON.stringify(this.queryStringToJSON(decodeURI(<string>data)));
 
     const activeMethod = $('.modal-body form .tab-content .nav-tabs a.nav-link.active').text();
-    $(`.method-${activeMethod}-swagger-settings-js`).val(data);
+
+    $(`.method-${activeMethod}-swagger-settings-js`).val(preparedData);
 
     this.closeClick();
   }
