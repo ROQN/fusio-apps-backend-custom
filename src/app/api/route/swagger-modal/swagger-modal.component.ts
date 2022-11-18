@@ -50,16 +50,16 @@ export class SwaggerModalComponent implements OnInit {
       $('.tag-js').val(defaultData.tag);
     }
 
-    if (defaultData['name[]']) {
-      const nameList = (typeof defaultData['name[]'] === 'string')
-        ? [typeof defaultData['name[]']] : defaultData['name[]'];
+    if (defaultData['names']) {
+      const nameList = (typeof defaultData['names'] === 'string')
+        ? [typeof defaultData['names']] : defaultData['names'];
 
       for (const i in nameList) {
         const name = nameList[i];
-        const parameter = defaultData['parameter[]'][i];
-        const fieldType = defaultData['fieldType[]'][i];
-        const description = defaultData['description[]'][i];
-        const defaultValue = defaultData['defaultValue[]'][i];
+        const parameter = defaultData['parameters'][i];
+        const fieldType = defaultData['fieldTypes'][i];
+        const description = defaultData['descriptions'][i];
+        const defaultValue = defaultData['defaultValues'][i];
 
         $('.field-name-js:first').val(name);
         $(".type-parameter-js:first option[value=" + parameter + "]")

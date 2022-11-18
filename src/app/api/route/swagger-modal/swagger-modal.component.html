@@ -7,24 +7,24 @@
     <input type="text" name="tag" placeholder="Route tag" class="form-control tag-js">
     <div class="input-group row-js">
 
-      <input type="text" name="name[]" placeholder="Name" class="form-control field-name-js">
+      <input type="text" name="names" placeholder="Name" class="form-control field-name-js">
 
-      <select name="parameter[]" class="form-select type-parameter-js">
+      <select name="parameters" class="form-select type-parameter-js">
         <option value="header">Header</option>
         <option value="query">Query</option>
         <option value="body">Body</option>
       </select>
 
-      <select name="fieldType[]" class="form-select field-type-js">
+      <select name="fieldTypes" class="form-select field-type-js">
         <option value="string">String</option>
         <option disabled value="number">Number</option>
         <option disabled value="int">Integer</option>
         <option disabled value="bool">Boolean</option>
       </select>
 
-      <input type="text" name="description[]" placeholder="Description" class="form-control description-js">
+      <input type="text" name="descriptions" placeholder="Description" class="form-control description-js">
 
-      <input type="text" name="defaultValue[]" placeholder="default value" class="form-control default-value-js">
+      <input type="text" name="defaultValues" placeholder="default value" class="form-control default-value-js">
 
       <a class="btn btn-primary" (click)="addRowClick()"><i class="bi bi-plus plus-js"></i></a>
     </div>
