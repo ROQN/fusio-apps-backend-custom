@@ -50,16 +50,24 @@ export class SwaggerModalComponent implements OnInit {
       $('.tag-js').val(defaultData.tag);
     }
 
+    if (defaultData.type_json) {
+      $('#type-json').attr('checked', 'checked');
+    }
+
+    if (defaultData.type_www_form) {
+      $('#type-www-form').attr('checked', 'checked');
+    }
+
     if (defaultData['names']) {
       const nameList = (typeof defaultData['names'] === 'string')
         ? [typeof defaultData['names']] : defaultData['names'];
 
       for (const i in nameList) {
         const name = nameList[i];
-        const parameter = defaultData['parameters'][i];
-        const fieldType = defaultData['fieldTypes'][i];
-        const description = defaultData['descriptions'][i];
-        const defaultValue = defaultData['defaultValues'][i];
+        const parameter = (typeof defaultData['parameters'] === 'string' ? defaultData['parameters'] : defaultData['parameters'][i]);
+        const fieldType = (typeof defaultData['fieldTypes'] === 'string' ? defaultData['fieldTypes'] : defaultData['fieldTypes'][i]);
+        const description = (typeof defaultData['descriptions'] === 'string' ? defaultData['descriptions'] : defaultData['descriptions'][i]);
+        const defaultValue = (typeof defaultData['defaultValues'] === 'string' ? defaultData['defaultValues'] : defaultData['defaultValues'][i]);
 
         $('.field-name-js:first').val(name);
         $(".type-parameter-js:first option[value=" + parameter + "]")
@@ -75,6 +83,10 @@ export class SwaggerModalComponent implements OnInit {
         $('.plus-js:first').trigger('click');
       }
     }
+
+    $('body').on('click', '.minus-js', function () {
+      $(this).closest('.row-js').remove();
+    });
   }
 
   private onTypeParameterChange() {
@@ -120,7 +132,8 @@ export class SwaggerModalComponent implements OnInit {
 
       $row.find(".type-parameter-js option[value=" + typeParameterValue + "]").attr("selected", "selected");
       $row.find(".field-type-js option[value=" + fieldTypedValue + "]").attr("selected", "selected");
-      $row.find('a.btn').remove();
+      $row.find('.plus-js').closest('a').remove();
+      $row.find('a.minus-js').show();
 
       const useDescription = this.getUseDescription(typeParameterValue, nameValue, defaultValue);
       $row.append(`<button class="btn btn-outline-secondary help-use-js" type="button" title="${useDescription}"><i class="bi bi-question"></i></button>`);

@@ -5,6 +5,25 @@
 <div class="modal-body">
   <div class="swagger-settings-js">
     <input type="text" name="tag" placeholder="Route tag" class="form-control tag-js">
+
+    <div class="mb-3 row" style="margin-top:1rem;">
+      <label for="type-json" class="col-sm-4 col-form-label fw-bold">application/json</label>
+      <div class="col-sm-8">
+        <div class="form-check form-switch">
+          <input type="checkbox" id="type-json" name="type_json"  class="form-check-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 row" style="margin-top:1rem;">
+      <label for="type-www-form" class="col-sm-4 col-form-label fw-bold">application/x-www-form-urlencoded</label>
+      <div class="col-sm-8">
+        <div class="form-check form-switch">
+          <input type="checkbox" id="type-www-form" name="type_www_form"  class="form-check-input">
+        </div>
+      </div>
+    </div>
+
     <div class="input-group row-js">
 
       <input type="text" name="names" placeholder="Name" class="form-control field-name-js">
@@ -27,6 +46,7 @@
       <input type="text" name="defaultValues" placeholder="default value" class="form-control default-value-js">
 
       <a class="btn btn-primary" (click)="addRowClick()"><i class="bi bi-plus plus-js"></i></a>
+      <a class="btn btn-primary minus-js" style="display: none"><i class="bi">-</i></a>
     </div>
     <div><a class="btn btn-primary" (click)="saveClick()">Save</a></div>
   </div>
