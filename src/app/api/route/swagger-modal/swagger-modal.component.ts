@@ -92,7 +92,7 @@ export class SwaggerModalComponent implements OnInit {
   private onTypeParameterChange() {
     $('body').on('change', '.type-parameter-js', function () {
       const parameterType = $(this).val();
-      if (parameterType !== 'header') {
+      if (parameterType !== 'header' && parameterType !== 'body_parameter_raw' && parameterType !== 'body_parameter_binary') {
         $(this).closest('.row-js').find('.field-type-js option').removeAttr('disabled');
       } else {
         $(this).closest('.row-js').find('.field-type-js option').each(function (item) {
@@ -168,11 +168,15 @@ export class SwaggerModalComponent implements OnInit {
     const defaultValue = value ? `|${value}` : '';
     switch (typeParameterValue) {
       case 'header':
-        return `{header_parameter:${nameValue}${defaultValue}`;
+        return `{header_parameter:${nameValue}${defaultValue}}`;
       case 'query':
         return `{url_parameter:${nameValue}${defaultValue}}`;
-      case 'body':
+      case 'body-form':
         return `{body_parameter_form:${nameValue}${defaultValue}}`;
+      case 'body-raw':
+        return `{body_parameter_raw:${nameValue}${defaultValue}}`;
+      case 'body-binary':
+        return `{body_parameter_binary:${nameValue}${defaultValue}}`;
       default:
         return '';
     }
