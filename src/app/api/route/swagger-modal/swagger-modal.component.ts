@@ -69,8 +69,7 @@ export class SwaggerModalComponent implements OnInit {
         const fieldType = (typeof defaultData['fieldTypes'] === 'string' ? defaultData['fieldTypes'] : defaultData['fieldTypes'][i]);
         const description = (typeof defaultData['descriptions'] === 'string' ? defaultData['descriptions'] : defaultData['descriptions'][i]);
         const defaultValue = (typeof defaultData['defaultValues'] === 'string' ? defaultData['defaultValues'] : defaultData['defaultValues'][i]);
-        const require = parseInt(typeof defaultData['requires'] === 'string' ? defaultData['requires'] : defaultData['requires'][i]);
-
+        const require = defaultData['requires'] ? parseInt(typeof defaultData['requires'] === 'string' ? defaultData['requires'] : defaultData['requires'][i]) : 0;
         $('.field-name-js:first').val(name);
         $(".type-parameter-js:first option[value=" + parameter + "]")
           .attr("selected", "selected")
