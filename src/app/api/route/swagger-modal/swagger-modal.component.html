@@ -47,6 +47,13 @@
 
       <input type="text" name="defaultValues" placeholder="default value" class="form-control default-value-js">
 
+      <div class="col-sm-1 require-block-js" style="padding-left: 15px; margin: auto;">
+        <input type="hidden" name="requires" class="form-check-input require-value-js">
+        <div class="form-check form-switch">
+          <input type="checkbox" class="form-check-input require-js" title="Is require?">
+        </div>
+      </div>
+
       <a class="btn btn-primary" (click)="addRowClick()"><i class="bi bi-plus plus-js"></i></a>
       <a class="btn btn-primary minus-js" style="display: none"><i class="bi">-</i></a>
     </div>

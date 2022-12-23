@@ -13,6 +13,7 @@ export class SwaggerModalComponent implements OnInit {
     this.initFormData();
     this.onTypeParameterChange();
     this.onDefaultValueChange();
+    this.onRequireChange();
   }
 
   private queryStringToJSON(qs: string) {
@@ -68,6 +69,7 @@ export class SwaggerModalComponent implements OnInit {
         const fieldType = (typeof defaultData['fieldTypes'] === 'string' ? defaultData['fieldTypes'] : defaultData['fieldTypes'][i]);
         const description = (typeof defaultData['descriptions'] === 'string' ? defaultData['descriptions'] : defaultData['descriptions'][i]);
         const defaultValue = (typeof defaultData['defaultValues'] === 'string' ? defaultData['defaultValues'] : defaultData['defaultValues'][i]);
+        const require = parseInt(typeof defaultData['requires'] === 'string' ? defaultData['requires'] : defaultData['requires'][i]);
 
         $('.field-name-js:first').val(name);
         $(".type-parameter-js:first option[value=" + parameter + "]")
@@ -80,6 +82,8 @@ export class SwaggerModalComponent implements OnInit {
 
         $('.description-js:first').val(description);
         $('.default-value-js:first').val(defaultValue);
+        $('.require-js:first').prop('checked', !!require);
+
         $('.plus-js:first').trigger('click');
       }
     }
@@ -116,6 +120,17 @@ export class SwaggerModalComponent implements OnInit {
     });
   }
 
+  private onRequireChange() {
+    $('body').on('change', '.require-js', function () {
+      const requireValueField = $(this).closest('.require-block-js').find('.require-value-js');
+      if ($(this).is(':checked')) {
+        requireValueField.val(1);
+      } else {
+        requireValueField.val(0);
+      }
+    });
+  }
+
   addRowClick() {
     const rows = this.elem.nativeElement.querySelectorAll('.row-js');
 
@@ -137,6 +152,14 @@ export class SwaggerModalComponent implements OnInit {
 
       const useDescription = this.getUseDescription(typeParameterValue, nameValue, defaultValue);
       $row.append(`<button class="btn btn-outline-secondary help-use-js" type="button" title="${useDescription}"><i class="bi bi-question"></i></button>`);
+
+      const requireField = $row.find('.require-js');
+      const requireValueField = requireField.closest('.require-block-js').find('.require-value-js');
+      if (requireField.is(':checked')) {
+        requireValueField.val(1);
+      } else {
+        requireValueField.val(0);
+      }
 
       $(row).find('input').val('');
       $(row).find('select option:selected').removeAttr('selected');
