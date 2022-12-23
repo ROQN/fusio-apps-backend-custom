@@ -6,6 +6,7 @@ import {Route as ModelRoute} from "fusio-sdk/dist/src/generated/backend/Route";
 
 interface Route_Method extends Route_Method_Base {
   isAnalytics?: boolean;
+  swaggerSetting?: string;
 }
 
 export class Config {

@@ -11,9 +11,12 @@ import {AxiosResponse} from "axios";
 import {Message} from "fusio-sdk/dist/src/generated/backend/Message";
 import {Modal} from "ngx-fusio-sdk";
 import Client from "fusio-sdk/dist/src/generated/backend/Client";
+import {SwaggerModalComponent} from "../swagger-modal/swagger-modal.component";
+import * as $ from "jquery";
 
 interface Route_Method extends Route_Method_Base {
   isAnalytics?: boolean;
+  swaggerSettings?: string;
 }
 
 @Component({
@@ -185,11 +188,15 @@ export class ModalComponent extends Modal<Client, ModelRoute> {
   }
 
   protected async create(entity: ModelRoute): Promise<AxiosResponse<Message>> {
+    this.initSwaggerSettings(entity);
+
     const group = await this.fusio.getClient().backendRoute();
     return await group.getBackendRoutes().backendActionRouteCreate(entity);
   }
 
   protected async update(entity: ModelRoute): Promise<AxiosResponse<Message>> {
+    this.initSwaggerSettings(entity);
+
     const group = await this.fusio.getClient().backendRoute();
     return await group.getBackendRoutesByRouteId('' + entity.id).backendActionRouteUpdate(entity);
   }
@@ -207,4 +214,22 @@ export class ModalComponent extends Modal<Client, ModelRoute> {
     };
   }
 
+  openSwaggerSetting() {
+    this.modalService.open(SwaggerModalComponent, { size: 'lg', animation: true });
+  }
+
+  private initSwaggerSettings(entity: ModelRoute) {
+    if (entity.config) {
+      const methods = entity.config[this.activeVersion - 1].methods;
+      if (methods) {
+        const method = methods[this.activeMethod]
+        if (method) {
+          const activeMethod = $('.modal-body form .tab-content .nav-tabs a.nav-link.active').text();
+          const swaggerSettingsValue = $(`.method-${activeMethod}-swagger-settings-js`).val();
+
+          Object.assign(method, {swaggerSettings: swaggerSettingsValue})
+        }
+      }
+    }
+  }
 }
