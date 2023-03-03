@@ -1,4 +1,3 @@
-
 <div class="modal-header">
   <h4 class="modal-title">
     <ng-container *ngIf="mode === 1">Create</ng-container>
@@ -15,7 +14,8 @@
       <div class="col-sm-10">
         <div class="input-group">
           <input type="text" id="name" name="name" [(ngModel)]="entity.name" class="form-control">
-          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="nameHelp"><i class="bi bi-question"></i></button>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="nameHelp"><i class="bi bi-question"></i>
+          </button>
           <ng-template #nameHelp>Unique name of the cronjob</ng-template>
         </div>
       </div>
@@ -25,8 +25,11 @@
       <div class="col-sm-10">
         <div class="input-group">
           <input type="text" id="cron" name="cron" [(ngModel)]="entity.cron" class="form-control">
-          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="cronHelp"><i class="bi bi-question"></i></button>
-          <ng-template #cronHelp>Cron expression at which the action gets executed. Click <a href="https://wikipedia.org/wiki/Cron">here</a> for more information about the syntax</ng-template>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="cronHelp"><i class="bi bi-question"></i>
+          </button>
+          <ng-template #cronHelp>Cron expression at which the action gets executed. Click <a
+            href="https://wikipedia.org/wiki/Cron">here</a> for more information about the syntax
+          </ng-template>
         </div>
       </div>
     </div>
@@ -37,16 +40,165 @@
           <select id="action" name="action" [(ngModel)]="entity.action" class="form-select">
             <option *ngFor="let action of actions" [ngValue]="action.name">{{action.name}}</option>
           </select>
-          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="actionHelp"><i class="bi bi-question"></i></button>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="actionHelp"><i
+            class="bi bi-question"></i></button>
           <ng-template #actionHelp>The action to execute</ng-template>
         </div>
       </div>
     </div>
+    <!-- -->
+    <div class="mb-3 row">
+      <label for="" class="col-sm-12 col-form-label fw-bold">Target System</label>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemEndpoint" class="col-sm-2 col-form-label fw-bold">Endpoint</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" id="targetSystemEndpoint" name="targetSystemEndpoint"
+                 [(ngModel)]="entity.targetSystemEndpoint" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemEndpointHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemEndpointHelp>target system endpoint</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemType" class="col-sm-2 col-form-label fw-bold">Typ</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select id="targetSystemType" name="targetSystemType" [(ngModel)]="entity.targetSystemType"
+                  class="form-select">
+            <option value="rest" selected="selected">REST API</option>
+          </select>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemTypeHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemTypeHelp>The type</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemMethod" class="col-sm-2 col-form-label fw-bold">Method</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select id="targetSystemMethod" name="targetSystemMethod" [(ngModel)]="entity.targetSystemMethod"
+                  class="form-select">
+            <option *ngFor="let item of ['get', 'post', 'put', 'delete']" [ngValue]="item">
+              {{item}}
+            </option>
+          </select>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemMethodHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemMethodHelp>The method</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemAuth" class="col-sm-2 col-form-label fw-bold">Auth</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select id="targetSystemAuth" name="targetSystemAuth" [(ngModel)]="entity.targetSystemAuth"
+                  class="form-select">
+            <option *ngFor="let item of ['basic']" [ngValue]="item">
+              {{item}}
+            </option>
+          </select>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemAuthHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemAuthHelp>The action to execute</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" id="targetSystemAuthUsername" name="targetSystemAuthUsername"
+                 [(ngModel)]="entity.targetSystemAuthUsername" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemUsernameHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemUsernameHelp>target system username</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="password" id="targetSystemAuthPassword" name="targetSystemAuthPassword"
+                 [(ngModel)]="entity.targetSystemAuthPassword" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemPasswordHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemPasswordHelp>target system Password</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemFormat" class="col-sm-2 col-form-label fw-bold">Format</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <textarea id="targetSystemFormat" name="targetSystemFormat" [(ngModel)]="entity.targetSystemFormat"
+                    class="form-control"></textarea>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemFormatHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #targetSystemFormatHelp>target system format</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="" class="col-sm-12 col-form-label fw-bold">Update Route Source System</label>
+    </div>
+    <div class="mb-3 row">
+      <label for="sourceSystemType" class="col-sm-2 col-form-label fw-bold">Method</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select id="sourceSystemType" name="sourceSystemType" [(ngModel)]="entity.sourceSystemMethod"
+                  class="form-select">
+            <option *ngFor="let item of ['get', 'post', 'put', 'delete']" [ngValue]="item">
+              {{item}}
+            </option>
+          </select>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="sourceSystemMethodHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #sourceSystemMethodHelp>The source system method</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="sourceSystemEndpoint" class="col-sm-2 col-form-label fw-bold">Endpoint</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" id="sourceSystemEndpoint" name="sourceSystemEndpoint"
+                 [(ngModel)]="entity.sourceSystemEndpoint" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="sourceSystemEndpointHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #sourceSystemEndpointHelp>source system endpoint</ng-template>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" name="sourceSystemFields" id="source-system-fields" [(ngModel)]="entity.sourceSystemFields">
+
+    <div class="source-system-field-rows-js">
+      <div class="input-group source-system-field-row-js">
+        <input type="text" name="fieldName" placeholder="Name" class="form-control field-name-js">
+        <input type="text" name="fieldData" placeholder="Value" class="form-control field-data-js">
+
+        <a class="btn btn-primary" (click)="addSourceSystemFieldClick()"><i class="bi bi-plus plus-js"></i></a>
+        <a class="btn btn-primary minus-js" style="display: none; min-width: 42px"><i class="bi">-</i></a>
+      </div>
+    </div>
+    <!-- -->
   </form>
 </div>
 <div class="modal-footer">
-  <ng-container *ngIf="mode === 1"><button type="button" class="btn btn-primary" (click)="submit()">Create</button></ng-container>
-  <ng-container *ngIf="mode === 2"><button type="button" class="btn btn-primary" (click)="submit()">Update</button></ng-container>
-  <ng-container *ngIf="mode === 3"><button type="button" class="btn btn-danger" (click)="submit()">Delete</button></ng-container>
+  <ng-container *ngIf="mode === 1">
+    <button type="button" class="btn btn-primary" (click)="saveClick()">Create</button>
+  </ng-container>
+  <ng-container *ngIf="mode === 2">
+    <button type="button" class="btn btn-primary" (click)="saveClick()">Update</button>
+  </ng-container>
+  <ng-container *ngIf="mode === 3">
+    <button type="button" class="btn btn-danger" (click)="submit()">Delete</button>
+  </ng-container>
   <button type="button" class="btn btn-light" (click)="modal.close()">Close</button>
 </div>
