@@ -93,6 +93,7 @@ import {GeneratorComponent} from './api/generator/generator.component';
 import {FusioService} from "./fusio.service";
 import {FusioCustomService} from "./fusio-custom.service";
 import {FusioSdkModule, FusioService as Sdk} from "ngx-fusio-sdk";
+import {SwaggerModalComponent} from './api/route/swagger-modal/swagger-modal.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +180,7 @@ import {FusioSdkModule, FusioService as Sdk} from "ngx-fusio-sdk";
     TagEditorComponent,
     MapComponent,
     CollectionComponent,
+    SwaggerModalComponent,
   ],
   imports: [
     BrowserModule,
