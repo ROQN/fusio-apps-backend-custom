@@ -175,6 +175,30 @@
         </div>
       </div>
     </div>
+    <div class="mb-3 row">
+      <label for="targetSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" id="targetSystemAuthUsername" name="targetSystemAuthUsername"
+                 [(ngModel)]="entity.sourceSystemAuthUsername" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="sourceSystemUsernameHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #sourceSystemUsernameHelp>Source system Username / App-Key</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="targetSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="password" id="sourceSystemAuthPassword" name="sourceSystemAuthPassword"
+                 [(ngModel)]="entity.sourceSystemAuthPassword" class="form-control">
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="sourceSystemPasswordHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #sourceSystemPasswordHelp>Source system Password / App-Secret</ng-template>
+        </div>
+      </div>
+    </div>
 
     <input type="hidden" name="sourceSystemFields" id="source-system-fields" [(ngModel)]="entity.sourceSystemFields">
 

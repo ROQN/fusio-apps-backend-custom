@@ -26,6 +26,10 @@ class Cronjob implements CronjobBase {
   targetSystemFormat?: string;
   sourceSystemMethod?: string;
   sourceSystemEndpoint?: string;
+
+  sourceSystemAuthUsername?: string;
+
+  sourceSystemAuthPassword?: string;
   sourceSystemFields?: string;
 }
 
