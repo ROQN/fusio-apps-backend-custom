@@ -31,7 +31,7 @@ class Cronjob implements CronjobBase {
 
   sourceSystemAuthPassword?: string;
   sourceSystemFields?: string;
-  active?: number;
+  active?: boolean;
   loggerLevel?: number;
 }
 
@@ -85,6 +85,7 @@ export class ModalComponent extends Modal<Client, Cronjob> {
   private initSourceSystemFields(entity: Cronjob) {
     const sourceSystemFields = $('#source-system-fields').val();
 
+    entity.active = !!entity.active;
     Object.assign(entity, {sourceSystemFields})
   }
 

@@ -48,14 +48,14 @@
     </div>
     <!-- -->
     <div class="mb-3 row">
-      <label for="" class="col-sm-12 col-form-label fw-bold">Cronjob settings</label>
+      <label class="col-sm-12 col-form-label fw-bold">Cronjob settings</label>
     </div>
     <div class="mb-3 row">
       <label for="active" class="col-sm-2 col-form-label fw-bold">Is enabled</label>
       <div class="col-sm-10">
         <div class="input-group">
           <div class="form-check form-switch">
-            <input type="checkbox" id="active" name="active" value="1" [(ngModel)]="entity.active" class="form-check-input">
+            <input type="checkbox" id="active" name="active" [(ngModel)]="entity.active" class="form-check-input">
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="mb-3 row">
-      <label for="" class="col-sm-12 col-form-label fw-bold">Target System</label>
+      <label class="col-sm-12 col-form-label fw-bold">Target System</label>
     </div>
     <div class="mb-3 row">
       <label for="targetSystemEndpoint" class="col-sm-2 col-form-label fw-bold">Endpoint</label>
@@ -207,10 +207,10 @@
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="targetSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
+      <label for="sourceSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
       <div class="col-sm-10">
         <div class="input-group">
-          <input type="text" id="targetSystemAuthUsername" name="targetSystemAuthUsername"
+          <input type="text" id="sourceSystemAuthUsername" name="sourceSystemAuthUsername"
                  [(ngModel)]="entity.sourceSystemAuthUsername" class="form-control">
           <button class="btn btn-outline-secondary" type="button" [ngbPopover]="sourceSystemUsernameHelp"><i
             class="bi bi-question"></i></button>
@@ -219,7 +219,7 @@
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="targetSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
+      <label for="sourceSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
       <div class="col-sm-10">
         <div class="input-group">
           <input type="password" id="sourceSystemAuthPassword" name="sourceSystemAuthPassword"
