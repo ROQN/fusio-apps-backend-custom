@@ -48,6 +48,37 @@
     </div>
     <!-- -->
     <div class="mb-3 row">
+      <label for="" class="col-sm-12 col-form-label fw-bold">Cronjob settings</label>
+    </div>
+    <div class="mb-3 row">
+      <label for="active" class="col-sm-2 col-form-label fw-bold">Is enabled</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <div class="form-check form-switch">
+            <input type="checkbox" id="active" name="active" value="1" [(ngModel)]="entity.active" class="form-check-input">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="loggerLevel" class="col-sm-2 col-form-label fw-bold">Logger level</label>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select id="loggerLevel" name="loggerLevel" [(ngModel)]="entity.loggerLevel"
+                  class="form-select">
+            <option *ngFor="let item of [{value:0,label:'No logging'},{value:1,label:'Error'},{value:2,label:'All'}]"
+                    [ngValue]="item.value">
+              {{item.label}}
+            </option>
+          </select>
+          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="loggerLevelHelp"><i
+            class="bi bi-question"></i></button>
+          <ng-template #loggerLevelHelp>Logger level</ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
       <label for="" class="col-sm-12 col-form-label fw-bold">Target System</label>
     </div>
     <div class="mb-3 row">

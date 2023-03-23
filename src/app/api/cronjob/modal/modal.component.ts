@@ -31,6 +31,8 @@ class Cronjob implements CronjobBase {
 
   sourceSystemAuthPassword?: string;
   sourceSystemFields?: string;
+  active?: number;
+  loggerLevel?: number;
 }
 
 @Component({
