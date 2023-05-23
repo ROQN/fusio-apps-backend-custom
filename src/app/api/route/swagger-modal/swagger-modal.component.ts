@@ -27,7 +27,7 @@ export class SwaggerModalComponent implements OnInit {
       const key = pair[0];
       const value = decodeURIComponent(pair[1] || '');
 
-      if (result[key]) {
+      if (typeof result[key] !== 'undefined') {
         if (Object.prototype.toString.call(result[key]) === '[object Array]') {
           result[key].push(value);
         } else {
@@ -61,7 +61,7 @@ export class SwaggerModalComponent implements OnInit {
 
     if (defaultData['names']) {
       const nameList = (typeof defaultData['names'] === 'string')
-        ? [typeof defaultData['names']] : defaultData['names'];
+        ? [defaultData['names']] : defaultData['names'];
 
       for (const i in nameList) {
         const name = nameList[i];
