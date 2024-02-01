@@ -23,6 +23,9 @@ class Cronjob implements CronjobBase {
   targetSystemAuth?: string;
   targetSystemAuthUsername?: string;
   targetSystemAuthPassword?: string;
+  targetSystemAuthApiToken?: string;
+  targetSystemAuthApiKey?: string;
+  targetSystemAuthApiValue?: string;
   targetSystemFormat?: string;
   sourceSystemMethod?: string;
   sourceSystemEndpoint?: string;
@@ -135,5 +138,27 @@ export class ModalComponent extends Modal<Client, Cronjob> {
     $('#source-system-fields').val(preparedData);
 
     this.submit().then(r => {});
+  }
+
+  changeTargetSystemAuth() {
+    const authType = $('#targetSystemAuth').val();
+
+    switch (authType) {
+      case '1: basic':
+        $('#targetSystemAuthApiKeyBlock').hide();
+        $('#targetSystemAuthApiTokenBlock').hide();
+        $('#targetSystemAuthBasicBlock').show();
+        break;
+      case '2: api_token':
+        $('#targetSystemAuthApiKeyBlock').hide();
+        $('#targetSystemAuthBasicBlock').hide();
+        $('#targetSystemAuthApiTokenBlock').show();
+        break;
+      case '3: api_key':
+        $('#targetSystemAuthBasicBlock').hide();
+        $('#targetSystemAuthApiTokenBlock').hide();
+        $('#targetSystemAuthApiKeyBlock').show();
+        break;
+    }
   }
 }

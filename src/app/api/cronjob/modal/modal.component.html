@@ -127,10 +127,12 @@
       <label for="targetSystemAuth" class="col-sm-2 col-form-label fw-bold">Auth</label>
       <div class="col-sm-10">
         <div class="input-group">
-          <select id="targetSystemAuth" name="targetSystemAuth" [(ngModel)]="entity.targetSystemAuth"
+          <select id="targetSystemAuth" (change)="changeTargetSystemAuth()" name="targetSystemAuth"
+                  [(ngModel)]="entity.targetSystemAuth"
                   class="form-select">
-            <option *ngFor="let item of ['basic']" [ngValue]="item">
-              {{item}}
+            <option *ngFor="let item of [{value: 'basic', label: 'Basic'}, {value: 'api_token', label: 'API token'}, {value: 'api_key', label: 'API key'}]"
+                    [ngValue]="item.value">
+              {{item.label}}
             </option>
           </select>
           <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemAuthHelp"><i
@@ -139,27 +141,66 @@
         </div>
       </div>
     </div>
-    <div class="mb-3 row">
-      <label for="targetSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
-      <div class="col-sm-10">
-        <div class="input-group">
-          <input type="text" id="targetSystemAuthUsername" name="targetSystemAuthUsername"
-                 [(ngModel)]="entity.targetSystemAuthUsername" class="form-control">
-          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemUsernameHelp"><i
-            class="bi bi-question"></i></button>
-          <ng-template #targetSystemUsernameHelp>target system username</ng-template>
+    <div id="targetSystemAuthApiTokenBlock" [ngStyle]="{'display': entity.targetSystemAuth === 'api_token' ? 'block' : 'none'}">
+      <div class="mb-3 row">
+        <label for="targetSystemAuthApiToken" class="col-sm-2 col-form-label fw-bold">API token</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input type="text" id="targetSystemAuthApiToken" name="targetSystemAuthApiToken"
+                   [(ngModel)]="entity.targetSystemAuthApiToken" class="form-control">
+            <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemAuthApiTokenHelp"><i
+              class="bi bi-question"></i></button>
+            <ng-template #targetSystemAuthApiTokenHelp>target system API Bearer token</ng-template>
+          </div>
         </div>
       </div>
     </div>
-    <div class="mb-3 row">
-      <label for="targetSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
-      <div class="col-sm-10">
-        <div class="input-group">
-          <input type="password" id="targetSystemAuthPassword" name="targetSystemAuthPassword"
-                 [(ngModel)]="entity.targetSystemAuthPassword" class="form-control">
-          <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemPasswordHelp"><i
-            class="bi bi-question"></i></button>
-          <ng-template #targetSystemPasswordHelp>target system Password</ng-template>
+    <div id="targetSystemAuthApiKeyBlock" [ngStyle]="{'display': entity.targetSystemAuth === 'api_key' ? 'block' : 'none'}">
+      <div class="mb-3 row">
+        <label for="targetSystemAuthApiKey" class="col-sm-2 col-form-label fw-bold">API key</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input type="text" id="targetSystemAuthApiKey" name="targetSystemAuthApiKey"
+                   [(ngModel)]="entity.targetSystemAuthApiKey" class="form-control">
+            <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemAuthApiKeyHelp"><i
+              class="bi bi-question"></i></button>
+            <ng-template #targetSystemAuthApiKeyHelp>With API key auth, you send a key-value pair to the API either in the request headers.</ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="targetSystemAuthApiValue" class="col-sm-2 col-form-label fw-bold">API value</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input type="text" id="targetSystemAuthApiValue" name="targetSystemAuthApiValue"
+                   [(ngModel)]="entity.targetSystemAuthApiValue" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="targetSystemAuthBasicBlock" [ngStyle]="{'display': entity.targetSystemAuth === 'basic' ? 'block' : 'none'}">
+      <div class="mb-3 row">
+        <label for="targetSystemAuthUsername" class="col-sm-2 col-form-label fw-bold">Username</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input type="text" id="targetSystemAuthUsername" name="targetSystemAuthUsername"
+                   [(ngModel)]="entity.targetSystemAuthUsername" class="form-control">
+            <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemUsernameHelp"><i
+              class="bi bi-question"></i></button>
+            <ng-template #targetSystemUsernameHelp>target system username</ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="targetSystemAuthPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <input type="password" id="targetSystemAuthPassword" name="targetSystemAuthPassword"
+                   [(ngModel)]="entity.targetSystemAuthPassword" class="form-control">
+            <button class="btn btn-outline-secondary" type="button" [ngbPopover]="targetSystemPasswordHelp"><i
+              class="bi bi-question"></i></button>
+            <ng-template #targetSystemPasswordHelp>target system Password</ng-template>
+          </div>
         </div>
       </div>
     </div>
